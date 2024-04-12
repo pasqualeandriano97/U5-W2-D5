@@ -4,6 +4,7 @@ package andrianopasquale97.U5W2D5.services;
 import andrianopasquale97.U5W2D5.entities.Dispositivo;
 import andrianopasquale97.U5W2D5.enums.stato;
 
+import andrianopasquale97.U5W2D5.exceptions.BadRequestException;
 import andrianopasquale97.U5W2D5.exceptions.NotFoundException;
 import andrianopasquale97.U5W2D5.payloads.DispositivoDTO;
 import andrianopasquale97.U5W2D5.repositories.DispositivoDAO;
@@ -61,7 +62,7 @@ public class DispositivoService {
             case "tablet":
                 return tipologie.TABLET;
             default:
-                throw new IllegalArgumentException("tipologia non valida");
+                throw new BadRequestException("tipologia non valida");
 
         }
     }
@@ -76,7 +77,7 @@ public class DispositivoService {
             case "dismesso":
                 return stato.DISMESSO;
             default:
-                throw new IllegalArgumentException("stato non valido");
+                throw new BadRequestException("stato non valido");
         }
     }
 
