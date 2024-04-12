@@ -20,7 +20,9 @@ public class Dispositivo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 private int id;
+    @Enumerated(EnumType.STRING)
 private tipologie tipologia;
+    @Enumerated(EnumType.STRING)
 private stato stato;
 @ManyToOne
 @JoinColumn(name = "dipendente_id")

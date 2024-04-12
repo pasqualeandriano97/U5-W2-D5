@@ -24,8 +24,8 @@ public class DipendentiController {
     // 1. - POST http://localhost:3001/dipendenti (+ req.body)
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED) // <-- 201
-    public DipendenteDTO saveAuthor(@RequestBody @Validated DipendenteDTO body, BindingResult result){
-        if (result.hasErrors()) {
+    public DipendenteDTO saveDipendenti(@RequestBody @Validated DipendenteDTO body, BindingResult result){
+        if (result.hasErrors() ) {
             throw new BadRequestException(result.getAllErrors());
         }
         System.out.println(body);
@@ -33,7 +33,7 @@ public class DipendentiController {
     }
     // 2. - GET http://localhost:3001/dipendenti
     @GetMapping("")
-    public Page<Dipendente> getAllAuthor(@RequestParam(defaultValue = "0") int page,
+    public Page<Dipendente> getAllDipendenti(@RequestParam(defaultValue = "0") int page,
                                          @RequestParam(defaultValue = "10") int size,
                                          @RequestParam(defaultValue = "id") String sortBy) {
         return this.dipendenteService.getDipendenti(page, size, sortBy);
