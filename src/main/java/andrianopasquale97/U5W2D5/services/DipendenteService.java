@@ -2,6 +2,7 @@ package andrianopasquale97.U5W2D5.services;
 
 import andrianopasquale97.U5W2D5.entities.Dipendente;
 import andrianopasquale97.U5W2D5.exceptions.BadRequestException;
+import andrianopasquale97.U5W2D5.exceptions.CorrectDelete;
 import andrianopasquale97.U5W2D5.exceptions.NotFoundException;
 import andrianopasquale97.U5W2D5.payloads.DipendenteDTO;
 import andrianopasquale97.U5W2D5.repositories.DipendentiDAO;
@@ -53,6 +54,7 @@ public class DipendenteService {
     public void findByIdAndDelete(int id) {
         Dipendente found = this.getDipendenteById(id);
         this.dipendentiDAO.delete(found);
+        throw new CorrectDelete("Dipendente correttamente eliminato");
     }
 
     public DipendenteDTO findByIdAndUpdate(int id, DipendenteDTO modifiedAuthor) {
@@ -66,8 +68,8 @@ public class DipendenteService {
         return modifiedAuthor;
     }
 
-    public Dipendente uploadAuthorImage (MultipartFile image, int authorId) throws IOException {
-        Dipendente found = this.getDipendenteById(authorId);
+    public Dipendente uploadAuthorImage (MultipartFile image, int dipendenteId) throws IOException {
+        Dipendente found = this.getDipendenteById(dipendenteId);
         String url = (String) cloudinaryService.uploader().upload(image.getBytes(), ObjectUtils.emptyMap()).get("url");
         found.setProfileImage(url);
         this.dipendentiDAO.save(found);

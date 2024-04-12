@@ -6,6 +6,7 @@ import andrianopasquale97.U5W2D5.entities.Dispositivo;
 import andrianopasquale97.U5W2D5.enums.stato;
 
 import andrianopasquale97.U5W2D5.exceptions.BadRequestException;
+import andrianopasquale97.U5W2D5.exceptions.CorrectDelete;
 import andrianopasquale97.U5W2D5.exceptions.NotFoundException;
 import andrianopasquale97.U5W2D5.payloads.DispositivoDTO;
 import andrianopasquale97.U5W2D5.repositories.DispositivoDAO;
@@ -26,7 +27,7 @@ public class DispositivoService {
 
     public DispositivoDTO save(DispositivoDTO newDispositivo) {
 
-        Dispositivo dispositivo = new Dispositivo(tipologie(newDispositivo.tipologia().toString()), statodispositivo(newDispositivo.stato()));
+        Dispositivo dispositivo = new Dispositivo(tipologie(newDispositivo.tipologia()),stato.DISPONIBILE);
 
         dispositivoDAO.save(dispositivo);
         return newDispositivo;
@@ -46,6 +47,7 @@ public class DispositivoService {
     public void findByIdAndDelete(int id) {
         Dispositivo found = this.getDispositivoById(id);
         this.dispositivoDAO.delete(found);
+        throw new CorrectDelete("Dispositivo correttamente eliminato");
     }
 
 

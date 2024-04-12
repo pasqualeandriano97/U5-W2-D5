@@ -18,6 +18,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -32,7 +33,7 @@ public class DispositivoController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public DispositivoDTO save(@RequestBody  DispositivoDTO newDispositivo) {
+    public DispositivoDTO save(@RequestBody @Validated DispositivoDTO newDispositivo) {
         this.dispositivoService.save(newDispositivo);
         return newDispositivo;
     }

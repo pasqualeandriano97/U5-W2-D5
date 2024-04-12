@@ -40,5 +40,11 @@ public class ExeceptionHandler {
         return new ErrorsResponseDTO("Problema lato server!!", LocalDateTime.now());
     }
 
+    @ExceptionHandler(CorrectDelete.class)
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public ErrorsResponseDTO handleAcceptedErrors(CorrectDelete ex) {
+        return new ErrorsResponseDTO(ex.getMessage(), LocalDateTime.now());
+    }
+
 
 }

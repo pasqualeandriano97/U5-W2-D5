@@ -45,8 +45,8 @@ public class DipendentiController {
     }
     // 4. - PUT http://localhost:3001/dipendenti/{id} (+ req.bod)
     @PutMapping("/{dipendenteId}")
-    public DipendenteDTO findAndUpdate(@PathVariable int authorId, @RequestBody DipendenteDTO body) throws Exception {
-        return dipendenteService.findByIdAndUpdate(authorId, body);
+    public DipendenteDTO findAndUpdate(@PathVariable int dipendenteId, @RequestBody DipendenteDTO body) throws Exception {
+        return dipendenteService.findByIdAndUpdate(dipendenteId, body);
     }
     // 5. - DELETE http://localhost:3001/dipendenti/{id}
     @DeleteMapping("/{dipendenteId}")
@@ -57,7 +57,7 @@ public class DipendentiController {
 
     // 6. - POST http://localhost:3001/dipendenti/image/{id} (+ req.body)
     @PostMapping("/upload/{dipendenteId}")
-    public Dipendente uploadAvatar(@RequestParam("avatar") MultipartFile image, @PathVariable int dipendenteId) throws IOException {
+    public Dipendente uploadAvatar(@RequestParam("profileImage") MultipartFile image, @PathVariable int dipendenteId) throws IOException {
         return this.dipendenteService.uploadAuthorImage(image, dipendenteId);
     }
 }
